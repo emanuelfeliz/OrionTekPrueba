@@ -1,0 +1,95 @@
+﻿@model OrionTekClientsCrud.ViewModel.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Crear Cliente";
+}
+
+<h1>Crear Cliente</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label name="Nombre" class="control-label"></label>
+                <input name="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <h4>Direcciones</h4>
+            <div id="direccion-container">
+                <div class="direccion-item">
+                    <div class="form-group">
+                        <label name="Direcciones[0].Calle" class="control-label">Calle</label>
+                        <input name="Direcciones[0].Calle" class="form-control" />
+                  
+                    </div>
+                    <div class="form-group">
+                        <label name="Direcciones[0].Ciudad" class="control-label">Ciudad</label>
+                        <input name="Direcciones[0].Ciudad" class="form-control" />
+                       
+                    </div>
+                    <div class="form-group">
+                        <label name="Direcciones[0].Estado" class="control-label">Estado</label>
+                        <input name="Direcciones[0].Estado" class="form-control" />
+                       
+                    </div>
+                    <div class="form-group">
+                        <label name="Direcciones[0].CodigoPostal" class="control-label">Código postal</label>
+                        <input name="Direcciones[0].CodigoPostal" class="form-control" />
+                      
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-secondary" onclick="agregarDireccion()">Agregar Dirección</button>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        let direccionIndex = 1;
+
+        function agregarDireccion() {
+            const direccionContainer = document.getElementById('direccion-container');
+            const newDireccion = `
+                <div class="direccion-item mt-3">
+                    <h5>Dirección ${direccionIndex + 1}</h5>
+                    <div class="form-group">
+                        <label>Calle</label>
+                        <input name="Direcciones[${direccionIndex}].Calle" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <input name="Direcciones[${direccionIndex}].Ciudad" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <input name="Direcciones[${direccionIndex}].Estado" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Código Postal</label>
+                        <input name="Direcciones[${direccionIndex}].CodigoPostal" class="form-control" />
+                    </div>
+                </div>
+            `;
+            direccionContainer.insertAdjacentHTML('beforeend', newDireccion);
+            direccionIndex++;
+        }
+    </script>
+}

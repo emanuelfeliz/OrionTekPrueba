@@ -1,0 +1,99 @@
+﻿@model OrionTekClientsCrud.ViewModel.ClienteViewModel
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<h1>Editar Cliente</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClienteId" />
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label">Nombre del Cliente</label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <h4>Direcciones</h4>
+            <div id="direccion-container">
+                @for (int i = 0; i < Model.Direcciones.Count; i++)
+                {
+                    <div class="direccion-item mt-3">
+                        <input type="hidden" asp-for="Direcciones[@i].DireccionId" />
+                        <h5>Dirección @(i + 1)</h5>
+                        <div class="form-group">
+                            <label name="Direcciones[@i].Calle" class="control-label">Calle</label>
+                            <input name="Direcciones[@i].Calle" class="form-control" value="@(Model.Direcciones[i].Calle)" />
+                            
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Direcciones[@i].Ciudad" class="control-label">Ciudad</label>
+                            <input name="Direcciones[@i].Ciudad" class="form-control" value="@(Model.Direcciones[i].Ciudad)" />
+                         
+                        </div>
+                        <div class="form-group">
+                            <label name="Direcciones[@i].Estado" class="control-label">Estado</label>
+                            <input name="Direcciones[@i].Estado" class="form-control" value="@(Model.Direcciones[i].Estado)" />
+                            
+                        </div>
+                        <div class="form-group">
+                            <label name="Direcciones[@i].CodigoPostal" class="control-label">Código Postal</label>
+                            <input name="Direcciones[@i].CodigoPostal" class="form-control" value="@(Model.Direcciones[i].CodigoPostal)" />
+                            
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button type="button" class="btn btn-secondary" onclick="agregarDireccion()">Agregar Dirección</button>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Actualizar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        let direccionIndex = @Model.Direcciones.Count;
+
+        function agregarDireccion() {
+            const direccionContainer = document.getElementById('direccion-container');
+            const newDireccion = `
+                        <div class="direccion-item mt-3">
+                            <h5>Dirección ${direccionIndex + 1}</h5>
+                            <div class="form-group">
+                                <label>Calle</label>
+                                <input name="Direcciones[${direccionIndex}].Calle" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Ciudad</label>
+                                <input name="Direcciones[${direccionIndex}].Ciudad" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <input name="Direcciones[${direccionIndex}].Estado" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Código Postal</label>
+                                <input name="Direcciones[${direccionIndex}].CodigoPostal" class="form-control" />
+                            </div>
+                        </div>
+                    `;
+            direccionContainer.insertAdjacentHTML('beforeend', newDireccion);
+            direccionIndex++;
+        }
+    </script>
+}

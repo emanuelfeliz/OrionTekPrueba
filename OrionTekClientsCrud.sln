@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrionTekClientsCrud", "OrionTekClientsCrud\OrionTekClientsCrud.csproj", "{8C6B145B-4693-472B-9F0B-677430830CB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C6B145B-4693-472B-9F0B-677430830CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6B145B-4693-472B-9F0B-677430830CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C6B145B-4693-472B-9F0B-677430830CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C6B145B-4693-472B-9F0B-677430830CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4C5B88C-F417-4DCA-AC2D-B02F398D3AF1}
+	EndGlobalSection
+EndGlobal
